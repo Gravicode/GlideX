@@ -51,6 +51,10 @@
     <None Include="Resources\small.tinyfnt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\TinyCLR-Libraries\GHIElectronics.TinyCLR.UI\GHIElectronics.TinyCLR.UI.csproj">
+      <Project>{2BD3FB57-7D27-4DAF-A0DC-A23F5793E12A}</Project>
+      <Name>GHIElectronics.TinyCLR.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TinyCLR.GlideX\TinyCLR.GlideX.csproj">
       <Project>{3FF23FE2-8224-4581-819D-B807AAF20DA2}</Project>
       <Name>TinyCLR.GlideX</Name>
@@ -78,9 +82,6 @@
     <Reference Include="GHIElectronics.TinyCLR.Pins, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Pins.2.0.0-preview5\lib\net452\GHIElectronics.TinyCLR.Pins.dll</HintPath>
     </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.UI, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.UI.2.0.0-preview5\lib\net452\GHIElectronics.TinyCLR.UI.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -96,6 +97,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\MainMenu.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SampleForm.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

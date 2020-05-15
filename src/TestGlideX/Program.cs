@@ -3,6 +3,8 @@ using GHI.GlideX;
 using GHIElectronics.TinyCLR.Devices.Display;
 using GHIElectronics.TinyCLR.Pins;
 using GHIElectronics.TinyCLR.UI;
+using GHIElectronics.TinyCLR.UI.Controls;
+using GHIElectronics.TinyCLR.UI.Input;
 using GHIElectronics.TinyCLR.UI.Media;
 using System;
 using System.Collections;
@@ -60,21 +62,35 @@ namespace TestGlideX
 
             return window;
         }
-
+        static Program app;
         private const int SCREEN_WIDTH = 480;
         private const int SCREEN_HEIGHT = 272;
         private static void TestGlideX()
         {
             var lcd = new DisplayDriver43(SC20260.GpioPin.PA15);
             //must be declared before setup glide..
-            var app = new Program(lcd.display);
+            app = new Program(lcd.display);
 
             GlideX.SetupGlide(SCREEN_WIDTH, SCREEN_HEIGHT, 96, 0, lcd.display);
-            string GlideXML = Resources.GetString(Resources.StringResources.MainMenu);  //@"<Glide Version=""1.0.7""><Window Name=""instance115"" Width=""480"" Height=""272"" BackColor=""dce3e7""><Button Name=""btn"" X=""40"" Y=""60"" Width=""120"" Height=""40"" Alpha=""255"" Text=""Click Me"" Font=""4"" FontColor=""000000"" DisabledFontColor=""808080"" TintColor=""000000"" TintAmount=""0""/><TextBlock Name=""TxtTest"" X=""42"" Y=""120"" Width=""300"" Height=""32"" Alpha=""255"" Text=""TextBlock"" TextAlign=""Left"" TextVerticalAlign=""Top"" Font=""6"" FontColor=""0"" BackColor=""000000"" ShowBackColor=""False""/></Window></Glide>";
+            string GlideXML = Resources.GetString(Resources.StringResources.SampleForm);  
             
             //Resources.GetString(Resources.StringResources.Window)
             Window window = GlideLoader.LoadWindow(GlideXML);
+            GlideX.MainWindow = window;
+            var txt = (Text)GlideX.GetChildByName("TxtTest");
+            var btn = (Button)GlideX.GetChildByName("btn");
+            if (btn != null)
+            {
+                btn.Click += (a,b) =>
+                {
+                    txt.TextContent = "Welcome to Glide for TinyCLR 2 - Cheers from Mif ;)";
+                    Debug.WriteLine("Button tapped.");
 
+                    window.Invalidate();
+                    txt.Invalidate();
+                };
+            }
+            
             //GlideTouch.Initialize();
             /*
             GHI.Glide.UI.Button btn = (GHI.Glide.UI.Button)window.GetChildByName("btn");
@@ -88,7 +104,7 @@ namespace TestGlideX
                 txt.Invalidate();
             };*/
 
-            GlideX.MainWindow = window;
+
 
             lcd.CapacitiveScreenReleased += Lcd_CapacitiveScreenReleased;
             lcd.CapacitiveScreenPressed += Lcd_CapacitiveScreenPressed;
@@ -115,6 +131,8 @@ namespace TestGlideX
         private static void Lcd_CapacitiveScreenReleased(object sender, DisplayDriver43.TouchEventArgs e)
         {
             Debug.WriteLine("you release the lcd at X:" + e.X + " ,Y:" + e.Y);
+            app.InputProvider.RaiseTouch(e.X, e.Y, TouchMessages.Up, DateTime.UtcNow);
+           
             //GlideTouch.RaiseTouchUpEvent(e.X, e.Y);
         }
 

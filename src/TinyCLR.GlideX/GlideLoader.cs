@@ -211,7 +211,7 @@ namespace GHI.GlideX
                 
             };
             var button = new Button()
-            {   
+            {   ID=name,
                 Child = txt,
                 Width = width,
                 Height = height,
@@ -250,6 +250,7 @@ namespace GHI.GlideX
             bool _checked = (reader.GetAttribute("Checked") == bool.TrueString) ? true : false;
 
             CheckBox checkBox = new CheckBox();
+            checkBox.ID = name;
             //name, alpha, x, y);
             checkBox.Visibility = visible ? Visibility.Visible : Visibility.Hidden;
             checkBox.IsEnabled = enabled;
@@ -282,6 +283,7 @@ namespace GHI.GlideX
             var fontColor = GlideUtils.Convert.ToColor(reader.GetAttribute("FontColor"));
             var txt = new Text(font, text)
             {
+                ID = name,
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 ForeColor = fontColor,
@@ -394,7 +396,7 @@ namespace GHI.GlideX
             bool enabled = (reader.GetAttribute("Enabled") != null) ? (reader.GetAttribute("Enabled") == bool.TrueString) : _defaultDisplayObject.Enabled;
 
             var image = new GHIElectronics.TinyCLR.UI.Controls.Image();// name, alpha, x, y, width, height);
-            
+            image.ID = name;
             image.Visibility = visible ? Visibility.Visible : Visibility.Hidden;
             image.IsEnabled = enabled;
             image.Width = width;
@@ -428,6 +430,7 @@ namespace GHI.GlideX
             var fontColor = GlideUtils.Convert.ToColor(reader.GetAttribute("FontColor"));
             var passwordBox = new TextBox
             {
+                ID = name,
                 Font = font,
                 Text = text,
                 Width = width,
@@ -504,6 +507,7 @@ namespace GHI.GlideX
             int value = Convert.ToInt32(reader.GetAttribute("Value"));
 
             ProgressBar progressBar = new ProgressBar();// name, alpha, x, y, width, height);
+            progressBar.ID = name;
             progressBar.Width = width;
             progressBar.Height = height;
             progressBar.Alpha = alpha;
@@ -542,6 +546,7 @@ namespace GHI.GlideX
             var selectedOutlineColor = GlideUtils.Convert.ToColor(reader.GetAttribute("SelectedOutlineColor"));
 
             RadioButton radioButton = new RadioButton();// name, alpha, x, y, width, height);
+            radioButton.ID = name;
             radioButton.Name = name;
             radioButton.Width = width;
             radioButton.Height = height;
@@ -629,6 +634,7 @@ namespace GHI.GlideX
             bool showBackColor = (reader.GetAttribute("ShowBackColor") == bool.TrueString) ? true : false;
             var textBlock = new Text()
             {
+                ID = name,
                 Width = width,
                 Height = height,
                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -673,7 +679,7 @@ namespace GHI.GlideX
             var fontColor = GlideUtils.Convert.ToColor(reader.GetAttribute("FontColor"));
             var textBox = new TextBox()
             {
-                
+                ID=  name,
                 Width = width,
                 Height = height,
                 HorizontalAlignment = HorizontalAlignment.Left,

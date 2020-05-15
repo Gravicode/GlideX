@@ -127,6 +127,9 @@
   <data name="NinaB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NinaB.tinyfnt;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
+  <data name="SampleForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SampleForm.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null;Windows-1252</value>
+  </data>
   <data name="small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\small.tinyfnt;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>

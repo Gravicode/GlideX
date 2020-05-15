@@ -10,6 +10,7 @@ using System.Drawing;
 using GHI.GlideX.Geom;
 using GHIElectronics.TinyCLR.Devices.Display;
 using GHIElectronics.TinyCLR.UI;
+using GHIElectronics.TinyCLR.UI.Controls;
 using TinyCLR.GlideX.Properties;
 
 namespace GHI.GlideX
@@ -27,7 +28,24 @@ namespace GHI.GlideX
         {
             
         }
-
+        public static UIElement GetChildByName(string ComponentID)
+        {
+            if (_mainWindow != null)
+            {
+                var mainCanvas = _mainWindow.Child as Canvas;
+                if (mainCanvas != null)
+                {
+                    foreach (UIElement component in mainCanvas.Children)
+                    {
+                        if (component.ID == ComponentID)
+                        {
+                            return component;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
         public static void SetupGlide(int width,int height, int bitsPerPixel, int orientationDeg, DisplayController displayController)
         {
             Hdc = displayController.Hdc;

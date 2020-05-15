@@ -42,6 +42,7 @@ namespace TestGlideX.Properties
         {
             SplashScreen = -19464,
             MainMenu = -8547,
+            SampleForm = 15306,
         }
         [System.SerializableAttribute()]
         internal enum FontResources : short

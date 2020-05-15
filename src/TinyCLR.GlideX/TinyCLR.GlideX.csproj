@@ -76,9 +76,6 @@
     <Reference Include="GHIElectronics.TinyCLR.Native, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Native.2.0.0-preview5\lib\net452\GHIElectronics.TinyCLR.Native.dll</HintPath>
     </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.UI, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.UI.2.0.0-preview5\lib\net452\GHIElectronics.TinyCLR.UI.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -90,6 +87,10 @@
     <None Include="Resources\loading.gif" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\TinyCLR-Libraries\GHIElectronics.TinyCLR.UI\GHIElectronics.TinyCLR.UI.csproj">
+      <Project>{2BD3FB57-7D27-4DAF-A0DC-A23F5793E12A}</Project>
+      <Name>GHIElectronics.TinyCLR.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\System.XML\System.XML.csproj">
       <Project>{CBF98196-A6F7-40B8-8D09-73E9B7BE37EB}</Project>
       <Name>System.XML</Name>
