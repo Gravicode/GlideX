@@ -4,15 +4,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-using GHI.GlideX;
-using GHIElectronics.TinyCLR.UI;
-using GHIElectronics.TinyCLR.UI.Media;
 using System;
 using System.Collections;
+//using Microsoft.SPOT;
+//using Microsoft.SPOT.Presentation.Media;
 using System.Drawing;
-using TinyCLR.GlideX.Ext;
+using GHIElectronics.TinyCLR.UI.Glide.Ext;
 
-namespace GHI.GlideX
+namespace GHIElectronics.TinyCLR.UI.Glide
 {
     /// <summary>
     /// The Utils class contains utility methods that help other classes.
@@ -29,20 +28,14 @@ namespace GHI.GlideX
             /// </summary>
             /// <param name="hexCode">Hex color code.</param>
             /// <returns>Color object.</returns>
-            public static GHIElectronics.TinyCLR.UI.Media.Color ToColor(string hexCode)
+            public static System.Drawing.Color ToColor(string hexCode)
             {
                 int c = System.Convert.ToInt32(hexCode, 16);
                 var col= System.Drawing.Color.FromArgb((c >> 16) | (c & 0x00FF00) | ((c & 0x0000FF) << 16));
-                var col2 = GHIElectronics.TinyCLR.UI.Media.Color.FromArgb(byte.MaxValue,col.R,col.G,col.B);
-                return col2;
+                col = System.Drawing.Color.FromArgb(byte.MaxValue,col.R,col.G,col.B);
+                return col;
             }
-            public static System.Drawing.Color ToColorDrawing(string hexCode)
-            {
-                int c = System.Convert.ToInt32(hexCode, 16);
-                var col = System.Drawing.Color.FromArgb((c >> 16) | (c & 0x00FF00) | ((c & 0x0000FF) << 16));
-                var col2 = System.Drawing.Color.FromArgb(byte.MaxValue, col.R, col.G, col.B);
-                return col2;
-            }
+            /*
             /// <summary>
             /// Converts a string into a Font object.
             /// </summary>
@@ -53,7 +46,7 @@ namespace GHI.GlideX
                 int fontType = System.Convert.ToInt32(font);
                 return FontManager.GetFont((FontManager.FontType)fontType);
             }
-
+            */
             /// <summary>
             /// Converts a string into an alignment flag.
             /// </summary>
@@ -79,18 +72,18 @@ namespace GHI.GlideX
             /// </summary>
             /// <param name="alignment"></param>
             /// <returns></returns>
-            public static TextAlignment ToHorizontalAlign(string alignment)
+            public static HorizontalAlignment ToHorizontalAlign(string alignment)
             {
                 switch (alignment.ToUpper())
                 {
                     case "LEFT":
-                        return TextAlignment.Left;
+                        return HorizontalAlignment.Left;
                     case "CENTER":
-                        return TextAlignment.Center;
+                        return HorizontalAlignment.Center;
                     case "RIGHT":
-                        return TextAlignment.Right;
+                        return HorizontalAlignment.Right;
                     default:
-                        return TextAlignment.Right;
+                        return HorizontalAlignment.Right;
                 }
             }
 

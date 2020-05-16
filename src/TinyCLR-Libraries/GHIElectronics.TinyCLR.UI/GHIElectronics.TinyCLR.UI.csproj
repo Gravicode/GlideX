@@ -36,6 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controls\CheckBox.cs" />
+    <Compile Include="Controls\DataGrid\DataGrid.cs" />
+    <Compile Include="Controls\DataGrid\DataGridColumn.cs" />
+    <Compile Include="Controls\DataGrid\DataGridItem.cs" />
+    <Compile Include="Controls\DataGrid\DataGridItemComparer.cs" />
     <Compile Include="Controls\Dropdown.cs" />
     <Compile Include="Controls\ListBoxItemHighlightable.cs" />
     <Compile Include="Controls\MessageBox.cs" />
@@ -43,6 +47,16 @@
     <Compile Include="Controls\RadioButton.cs" />
     <Compile Include="Controls\TextBox.cs" />
     <Compile Include="Controls\Button.cs" />
+    <Compile Include="Glide\Bitmap.cs" />
+    <Compile Include="Glide\Display\Graphics.cs" />
+    <Compile Include="Glide\Events\Events.cs" />
+    <Compile Include="Glide\Ext\Bitmaps.cs" />
+    <Compile Include="Glide\Ext\Colors.cs" />
+    <Compile Include="Glide\Geom\Point.cs" />
+    <Compile Include="Glide\Geom\Rectangle.cs" />
+    <Compile Include="Glide\Geom\Size.cs" />
+    <Compile Include="Glide\GlideUtils.cs" />
+    <Compile Include="Glide\Media\Color.cs" />
     <Compile Include="Input\InputProvider.cs" />
     <Compile Include="Media\Color.cs" />
     <Compile Include="Resources.Designer.cs">
@@ -157,6 +171,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\droid_reg12.tinyfnt" />
     <None Include="Resources\Keyboard_Lowercase.gif" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +228,12 @@
       <Project>{52A54E94-2FD8-4EEE-822C-C8C7F27AF423}</Project>
       <Name>GHIElectronics.TinyCLR.Drawing</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DataGridIcon_Asc.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DataGridIcon_Desc.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

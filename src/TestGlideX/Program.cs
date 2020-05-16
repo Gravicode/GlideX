@@ -72,11 +72,37 @@ namespace TestGlideX
             app = new Program(lcd.display);
 
             GlideX.SetupGlide(SCREEN_WIDTH, SCREEN_HEIGHT, 96, 0, lcd.display);
-            string GlideXML = Resources.GetString(Resources.StringResources.SampleForm);  
+            string GlideXML = Resources.GetString(Resources.StringResources.GridDemo);  
             
             //Resources.GetString(Resources.StringResources.Window)
             Window window = GlideLoader.LoadWindow(GlideXML);
             GlideX.MainWindow = window;
+            var GvData = (DataGrid)GlideX.GetChildByName("GvData");
+            GvData.AddColumn(new DataGridColumn("Time", 100));
+            GvData.AddColumn(new DataGridColumn("Sensor A", 100));
+            GvData.AddColumn(new DataGridColumn("Sensor B", 100));
+            Random rnd = new Random();
+            int counter = 0;
+            Timer timer = new Timer((object o) => {
+                Application.Current.Dispatcher.Invoke(TimeSpan.FromMilliseconds(1), _ =>
+                {
+                    //insert to db
+                    var item = new DataGridItem(new object[] { DateTime.Now.ToString("HH:mm:ss"), $"{(20 + rnd.Next() * 50).ToString("n2")}C", $"{(rnd.Next() * 1000).ToString("n2")}L" });
+                    //add data to grid
+                    GvData.AddItem(item);
+                    GvData.Invalidate();
+                    if (counter++ > 4)
+                    {
+                        counter = 0;
+                        GvData.Clear();
+                    }
+                    return null;
+                }, null);
+                
+            }, null, 1000, 1000);
+
+          
+            /*
             var txt = (Text)GlideX.GetChildByName("TxtTest");
             var btn = (Button)GlideX.GetChildByName("btn");
             if (btn != null)
@@ -89,8 +115,8 @@ namespace TestGlideX
                     window.Invalidate();
                     txt.Invalidate();
                 };
-            }
-            
+            }*/
+
             //GlideTouch.Initialize();
             /*
             GHI.Glide.UI.Button btn = (GHI.Glide.UI.Button)window.GetChildByName("btn");

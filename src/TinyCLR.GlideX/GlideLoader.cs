@@ -113,8 +113,8 @@ namespace GHI.GlideX
 
                 case "DataGrid":
                     //not supported
-                    return null;
-                    //return LoadDataGrid(reader);
+                    //return null;
+                    return LoadDataGrid(reader);
 
                 case "Image":
                     return LoadImage(reader);
@@ -315,7 +315,7 @@ namespace GHI.GlideX
             Canvas.SetTop(dropdown, y);
             return dropdown;
         }
-        /*
+        
         /// <summary>
         /// Parses the DataGrid XML into a UI component.
         /// </summary>
@@ -328,6 +328,7 @@ namespace GHI.GlideX
             int x = Convert.ToInt32(reader.GetAttribute("X"));
             int y = Convert.ToInt32(reader.GetAttribute("Y"));
             int width = Convert.ToInt32(reader.GetAttribute("Width"));
+            int height = Convert.ToInt32(reader.GetAttribute("Height"));
             bool visible = (reader.GetAttribute("Visible") != null) ? (reader.GetAttribute("Visible") == bool.TrueString) : _defaultDisplayObject.Visible;
             bool enabled = (reader.GetAttribute("Enabled") != null) ? (reader.GetAttribute("Enabled") == bool.TrueString) : _defaultDisplayObject.Enabled;
 
@@ -342,20 +343,22 @@ namespace GHI.GlideX
             bool showScrollbar = (reader.GetAttribute("ShowScrollbar") == bool.TrueString) ? true : false;
             int scrollbarWidth = Convert.ToInt32(reader.GetAttribute("ScrollbarWidth"));
 
-            Color headersBackColor = GlideUtils.Convert.ToColor(reader.GetAttribute("HeadersBackColor"));
-            Color headersFontColor = GlideUtils.Convert.ToColor(reader.GetAttribute("HeadersFontColor"));
-            Color itemsBackColor = GlideUtils.Convert.ToColor(reader.GetAttribute("ItemsBackColor"));
-            Color itemsAltBackColor = GlideUtils.Convert.ToColor(reader.GetAttribute("ItemsAltBackColor"));
-            Color itemsFontColor = GlideUtils.Convert.ToColor(reader.GetAttribute("ItemsFontColor"));
-            Color selectedItemBackColor = GlideUtils.Convert.ToColor(reader.GetAttribute("SelectedItemBackColor"));
-            Color selectedItemFontColor = GlideUtils.Convert.ToColor(reader.GetAttribute("SelectedItemFontColor"));
-            Color gridColor = GlideUtils.Convert.ToColor(reader.GetAttribute("GridColor"));
-            Color scrollbarBackColor = GlideUtils.Convert.ToColor(reader.GetAttribute("ScrollbarBackColor"));
-            Color scrollbarScrubberColor = GlideUtils.Convert.ToColor(reader.GetAttribute("ScrollbarScrubberColor"));
+            var headersBackColor = GlideUtils.Convert.ToColorDrawing(reader.GetAttribute("HeadersBackColor"));
+            var headersFontColor = GlideUtils.Convert.ToColorDrawing(reader.GetAttribute("HeadersFontColor"));
+            var itemsBackColor = GlideUtils.Convert.ToColorDrawing(reader.GetAttribute("ItemsBackColor"));
+            var itemsAltBackColor = GlideUtils.Convert.ToColorDrawing(reader.GetAttribute("ItemsAltBackColor"));
+            var itemsFontColor = GlideUtils.Convert.ToColorDrawing(reader.GetAttribute("ItemsFontColor"));
+            var selectedItemBackColor = GlideUtils.Convert.ToColorDrawing(reader.GetAttribute("SelectedItemBackColor"));
+            var selectedItemFontColor = GlideUtils.Convert.ToColorDrawing(reader.GetAttribute("SelectedItemFontColor"));
+            var gridColor = GlideUtils.Convert.ToColorDrawing(reader.GetAttribute("GridColor"));
+            var scrollbarBackColor = GlideUtils.Convert.ToColor(reader.GetAttribute("ScrollbarBackColor"));
+            var scrollbarScrubberColor = GlideUtils.Convert.ToColor(reader.GetAttribute("ScrollbarScrubberColor"));
 
-            DataGrid dataGrid = new DataGrid(name, alpha, x, y, width, rowHeight, rowCount);
-            dataGrid.Visible = visible;
-            dataGrid.Enabled = enabled;
+            DataGrid dataGrid = new DataGrid(name, alpha, 0, 0, width,height, rowHeight, rowCount);
+            
+           
+            dataGrid.Visibility = visible ? Visibility.Visible : Visibility.Hidden;
+            dataGrid.IsEnabled = enabled;
             dataGrid.Font = font;
 
             dataGrid.Draggable = draggable;
@@ -375,10 +378,11 @@ namespace GHI.GlideX
             dataGrid.GridColor = gridColor;
             dataGrid.ShowScrollbar = showScrollbar;
             dataGrid.ScrollbarWidth = scrollbarWidth;
-
+            Canvas.SetLeft(dataGrid, x);
+            Canvas.SetTop(dataGrid, y);
             return dataGrid;
         }
-        */
+        
         /// <summary>
         /// Parses the Image XML into a UI component.
         /// </summary>

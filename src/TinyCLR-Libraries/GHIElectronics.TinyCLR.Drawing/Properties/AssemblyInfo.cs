@@ -13,3 +13,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("2.0.0.50000")]
 [assembly: AssemblyInformationalVersion("2.0.0-preview5")]
 [assembly: InternalsVisibleTo("TinyCLR2.Glide")]
+[assembly: InternalsVisibleTo("GHIElectronics.TinyCLR.UI")]

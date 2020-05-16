@@ -50,7 +50,7 @@ namespace TestGlideX
             BacklightEnabled = true;
 
             SetupCapacitiveTouchController();
-
+            
             ConfigureDisplay();
             //this.backlightPin = GpioPinFactory.Create(gSocket, Socket.Pin.Nine, true, this);
 

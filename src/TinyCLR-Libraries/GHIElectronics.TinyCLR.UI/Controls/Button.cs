@@ -52,7 +52,7 @@ namespace GHIElectronics.TinyCLR.UI.Controls {
             var args = new RoutedEventArgs(evt, this);
 
             this.Click?.Invoke(this, args);
-
+            
             e.Handled = args.Handled;
 
             this.isPressed = true;
