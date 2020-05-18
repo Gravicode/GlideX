@@ -129,9 +129,8 @@ namespace GHI.GlideX
                     return LoadRadioButton(reader);
 
                 case "Slider":
-                    //not supported
-                    return null;
-                    //return LoadSlider(reader);
+                   
+                    return LoadSlider(reader);
 
                 case "TextBlock":
                     return LoadTextBlock(reader);
@@ -354,7 +353,7 @@ namespace GHI.GlideX
             var scrollbarBackColor = GlideUtils.Convert.ToColor(reader.GetAttribute("ScrollbarBackColor"));
             var scrollbarScrubberColor = GlideUtils.Convert.ToColor(reader.GetAttribute("ScrollbarScrubberColor"));
 
-            DataGrid dataGrid = new DataGrid(name, alpha, 0, 0, width,height, rowHeight, rowCount);
+            DataGrid dataGrid = new DataGrid(name, alpha, x, y, width,height, rowHeight, rowCount);
             
            
             dataGrid.Visibility = visible ? Visibility.Visible : Visibility.Hidden;
@@ -451,7 +450,7 @@ namespace GHI.GlideX
             passwordBox.TextAlign = FromAlignment(textAlign);
             passwordBox.Font = font;
             //passwordBox.FontColor = fontColor;
-
+            passwordBox.IsPasswordBox = true;
             Canvas.SetLeft(passwordBox, x);
             Canvas.SetTop(passwordBox, y);
             return passwordBox;
@@ -572,7 +571,7 @@ namespace GHI.GlideX
 
             return radioButton;
         }
-        /*
+        
         /// <summary>
         /// Parses the Slider XML into a UI component.
         /// </summary>
@@ -592,15 +591,15 @@ namespace GHI.GlideX
             string direction = reader.GetAttribute("Direction");
             int snapInterval = Convert.ToInt32(reader.GetAttribute("SnapInterval"));
             int tickInterval = Convert.ToInt32(reader.GetAttribute("TickInterval"));
-            Color tickColor = GlideUtils.Convert.ToColor(reader.GetAttribute("TickColor"));
+            var tickColor = GlideUtils.Convert.ToColor(reader.GetAttribute("TickColor"));
             int knobSize = Convert.ToInt32(reader.GetAttribute("KnobSize"));
             double minimum = Convert.ToDouble(reader.GetAttribute("Minimum"));
             double maximum = Convert.ToDouble(reader.GetAttribute("Maximum"));
             double value = Convert.ToDouble(reader.GetAttribute("Value"));
 
             Slider slider = new Slider(name, alpha, x, y, width, height);
-            slider.Visible = visible;
-            slider.Enabled = enabled;
+            slider.Visibility =  visible? Visibility.Visible : Visibility.Hidden;
+            slider.IsEnabled = enabled;
             slider.Direction = direction;
             slider.SnapInterval = snapInterval;
             slider.TickInterval = tickInterval;
@@ -610,9 +609,11 @@ namespace GHI.GlideX
             slider.Maximum = maximum;
             slider.Value = value;
 
+            Canvas.SetLeft(slider, x);
+            Canvas.SetTop(slider, y);
             return slider;
         }
-        */
+        
         /// <summary>
         /// Parses the TextBlock XML into a UI component.
         /// </summary>

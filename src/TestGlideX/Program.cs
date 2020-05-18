@@ -70,19 +70,35 @@ namespace TestGlideX
             var lcd = new DisplayDriver43(SC20260.GpioPin.PA15);
             //must be declared before setup glide..
             app = new Program(lcd.display);
-
+            OnScreenKeyboard.Font = Resources.GetFont(Resources.FontResources.NinaB);
             GlideX.SetupGlide(SCREEN_WIDTH, SCREEN_HEIGHT, 96, 0, lcd.display);
             string GlideXML = Resources.GetString(Resources.StringResources.GridDemo);  
             
             //Resources.GetString(Resources.StringResources.Window)
             Window window = GlideLoader.LoadWindow(GlideXML);
             GlideX.MainWindow = window;
+            
             var GvData = (DataGrid)GlideX.GetChildByName("GvData");
+            var TxtSlider = (Text)GlideX.GetChildByName("txt1");
+            var Slider1 = (Slider)GlideX.GetChildByName("slider1");
             GvData.AddColumn(new DataGridColumn("Time", 100));
             GvData.AddColumn(new DataGridColumn("Sensor A", 100));
             GvData.AddColumn(new DataGridColumn("Sensor B", 100));
             Random rnd = new Random();
             int counter = 0;
+            Slider1.RaiseTouchDownEvent += (object Sender, GHIElectronics.TinyCLR.UI.Glide.Geom.Point e)=>
+            {
+                app.InputProvider.RaiseTouch(e.X, e.Y, TouchMessages.Down, DateTime.UtcNow);
+            };
+            Slider1.RaiseTouchUpEvent += (object Sender, GHIElectronics.TinyCLR.UI.Glide.Geom.Point e) =>
+            {
+                app.InputProvider.RaiseTouch(e.X, e.Y, TouchMessages.Up, DateTime.UtcNow);
+            };
+            Slider1.RaiseTouchMoveEvent += (object Sender, GHIElectronics.TinyCLR.UI.Glide.Geom.Point e) =>
+            {
+                app.InputProvider.RaiseTouch(e.X, e.Y, TouchMessages.Move, DateTime.UtcNow);
+            };
+
             Timer timer = new Timer((object o) => {
                 Application.Current.Dispatcher.Invoke(TimeSpan.FromMilliseconds(1), _ =>
                 {
@@ -96,11 +112,13 @@ namespace TestGlideX
                         counter = 0;
                         GvData.Clear();
                     }
+                    TxtSlider.TextContent = Slider1.Value.ToString("n");
+                    TxtSlider.Invalidate();
                     return null;
                 }, null);
                 
             }, null, 1000, 1000);
-
+            
           
             /*
             var txt = (Text)GlideX.GetChildByName("TxtTest");
@@ -147,6 +165,10 @@ namespace TestGlideX
             //Thread.Sleep(Timeout.Infinite);
         }
 
+      
+
+
+
 
         #region Lcd Capacitive Touch Events
         /// <summary>
@@ -171,12 +193,14 @@ namespace TestGlideX
         {
             Debug.WriteLine("you press the lcd at X:" + e.X + " ,Y:" + e.Y);
             //GlideTouch.RaiseTouchDownEvent(e.X, e.Y);
+            app.InputProvider.RaiseTouch(e.X, e.Y, TouchMessages.Down, DateTime.UtcNow);
         }
 
         private static void Lcd_CapacitiveScreenMove(object sender, DisplayDriver43.TouchEventArgs e)
         {
             Debug.WriteLine("you move finger on the lcd at X:" + e.X + " ,Y:" + e.Y);
             //GlideTouch.RaiseTouchMoveEvent(sender, new TouchEventArgs(new  GHI.Glide.Geom.Point(e.X,e.Y)));
+            app.InputProvider.RaiseTouch(e.X, e.Y, TouchMessages.Move, DateTime.UtcNow);
         }
         #endregion
     }

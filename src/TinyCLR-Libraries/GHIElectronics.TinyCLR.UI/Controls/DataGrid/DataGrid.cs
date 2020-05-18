@@ -76,11 +76,11 @@ namespace GHIElectronics.TinyCLR.UI.Controls
         {
             get
             {
-                _rect.X = X;
+                //_rect.X = X;
                 //if (Parent != null)
                 //    _rect.X += Parent.X;
 
-                _rect.Y = Y;
+                //_rect.Y = Y;
                 //if (Parent != null)
                 //    _rect.Y += Parent.Y;
 
@@ -104,8 +104,10 @@ namespace GHIElectronics.TinyCLR.UI.Controls
             Width = width;
             Height = height;
             Alpha = 255;
-            X = x;
-            Y = y;
+            X = 0;
+            Y = 0;
+            _rect.X = x;
+            _rect.Y = y;
             _rect.Width = Width;
             _rect.Height = Height;
 
@@ -320,7 +322,9 @@ namespace GHIElectronics.TinyCLR.UI.Controls
         /// <returns>Touch event arguments.</returns>
         protected override void OnTouchDown(TouchEventArgs e)
         {
-            e.GetPosition(this.Parent, 0, out int x, out int y);
+            var x = e.Touches[0].X;
+            var y = e.Touches[0].Y;
+            //e.GetPosition(this.Parent, 0, out int x, out int y);
             if (Rect.Contains(x,y) && _rows.Count > 0)
             {
                 _pressed = true;
@@ -349,11 +353,13 @@ namespace GHIElectronics.TinyCLR.UI.Controls
         {
             if (!_pressed)
                 return;
-            e.GetPosition(this.Parent, 0, out int ax, out int ay);
+            var ax = e.Touches[0].X;
+            var ay = e.Touches[0].Y;
+            //e.GetPosition(this.Parent, 0, out int ax, out int ay);
             if (!_moving && Rect.Contains(ax,ay))
             {
-                int x = /*parent x*/0 + X;
-                int y = /*parent y*/0 + Y;
+                int x = Rect.X; ///*parent x*/0 + X;
+                int y = Rect.Y;///*parent y*/0 + Y;
                 int index = ((_listY + ay) - y) / RowHeight;
                 int rowIndex = index;
                 // If headers are present the rowIndex needs to be offset
@@ -419,7 +425,9 @@ namespace GHIElectronics.TinyCLR.UI.Controls
         {
             if (!Draggable || !_pressed || _rows.Count <= RowCount)
                 return;
-            e.GetPosition(this.Parent, 0, out int ax, out int ay);
+            var ax = e.Touches[0].X;
+            var ay = e.Touches[0].Y;
+            //e.GetPosition(this.Parent, 0, out int ax, out int ay);
             if (!_moving)
             {
                 if (_ignoredTouchMoves < _maxIgnoredTouchMoves)

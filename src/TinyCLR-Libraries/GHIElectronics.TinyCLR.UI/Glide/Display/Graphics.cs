@@ -30,6 +30,13 @@ namespace GHIElectronics.TinyCLR.UI.Glide
            
         }
 
+        public GlideGraphics(System.Drawing.Bitmap bmp)
+        {
+            _realBitmap = bmp;
+            _bitmap = System.Drawing.Graphics.FromImage(_realBitmap);
+
+        }
+
         public Graphics GetGraphic()
         {
             return _bitmap;
