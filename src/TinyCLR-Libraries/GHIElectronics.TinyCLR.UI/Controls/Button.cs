@@ -1,10 +1,12 @@
+using System;
 using System.Drawing;
 using GHIElectronics.TinyCLR.UI.Input;
 using GHIElectronics.TinyCLR.UI.Media;
 using GHIElectronics.TinyCLR.UI.Media.Imaging;
 
 namespace GHIElectronics.TinyCLR.UI.Controls {
-    public class Button : ContentControl {
+    public class Button : ContentControl, IDisposable
+    {
         public ushort Alpha { get; set; } = 0xC8;
         public int RadiusBorder { get; set; } = 5;
 

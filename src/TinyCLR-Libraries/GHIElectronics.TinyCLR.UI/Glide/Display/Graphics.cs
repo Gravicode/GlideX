@@ -13,7 +13,7 @@ namespace GHIElectronics.TinyCLR.UI.Glide
     /// <summary>
     /// The Graphics class contains a set of methods you can use to draw on itself.
     /// </summary>
-    public sealed class GlideGraphics
+    public sealed class GlideGraphics: IDisposable
     {
         
         private System.Drawing.Bitmap _realBitmap;

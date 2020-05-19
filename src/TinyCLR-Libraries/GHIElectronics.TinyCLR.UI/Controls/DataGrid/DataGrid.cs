@@ -21,7 +21,7 @@ namespace GHIElectronics.TinyCLR.UI.Controls
     /// <summary>
     /// The DataGrid component is a list-based component that provides a grid of rows and columns.
     /// </summary>
-    public class DataGrid : ContentControl
+    public class DataGrid : ContentControl, IDisposable
     {
         private ArrayList _columns = new ArrayList();
         private ArrayList _rows = new ArrayList();

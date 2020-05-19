@@ -14,7 +14,8 @@ namespace GHIElectronics.TinyCLR.UI.Controls {
         Down
     }
 
-    public class ProgressBar : Image {
+    public class ProgressBar : Image, IDisposable
+    {
         private BitmapImage bitmapImageProgressBar;
         private BitmapImage bitmapImageProgressBarFill;
 
