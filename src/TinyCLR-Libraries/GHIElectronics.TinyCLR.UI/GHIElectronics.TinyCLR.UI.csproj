@@ -49,7 +49,7 @@
     <Compile Include="Controls\TextBox.cs" />
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Glide\Bitmap.cs" />
-    <Compile Include="Glide\Display\Graphics.cs" />
+    <Compile Include="Glide\Display\GlideGraphics.cs" />
     <Compile Include="Glide\Events\Events.cs" />
     <Compile Include="Glide\Ext\Bitmaps.cs" />
     <Compile Include="Glide\Ext\Colors.cs" />
