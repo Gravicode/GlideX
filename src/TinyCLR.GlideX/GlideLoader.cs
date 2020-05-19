@@ -109,7 +109,7 @@ namespace GHI.GlideX
                     return LoadCheckBox(reader);
 
                 case "Dropdown":
-                    return LoadDropdown(reader);
+                    return LoadComboBox(reader);
 
                 case "DataGrid":
                     //not supported
@@ -282,16 +282,22 @@ namespace GHI.GlideX
             var fontColor = GlideUtils.Convert.ToColor(reader.GetAttribute("FontColor"));
             var txt = new Text(font, text)
             {
-                ID = name,
+                TextContent = text,
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 ForeColor = fontColor,
 
             };
-            Dropdown dropdown = new Dropdown();// name, alpha, x, y, width, height);
+            Dropdown dropdown = new Dropdown();
+            dropdown.ID = name;
+            dropdown.Width = width;
+            dropdown.Height = height;
+            dropdown.Alpha = alpha;
+            
+            // name, alpha, x, y, width, height);
             dropdown.Visibility = visible ? Visibility.Visible : Visibility.Hidden;
             dropdown.IsEnabled = enabled;
-            dropdown.Child = txt;
+            //dropdown.Child = txt;
             //dropdown.Text = text;
             dropdown.Font = font;
             //dropdown.FontColor = fontColor;
@@ -314,7 +320,60 @@ namespace GHI.GlideX
             Canvas.SetTop(dropdown, y);
             return dropdown;
         }
-        
+        private static ComboBox LoadComboBox(XmlReader reader)
+        {
+            string name = reader.GetAttribute("Name");
+            ushort alpha = (reader.GetAttribute("Alpha") != null) ? Convert.ToUInt16(reader.GetAttribute("Alpha")) : _defaultDisplayObject.Alpha;
+            int x = Convert.ToInt32(reader.GetAttribute("X"));
+            int y = Convert.ToInt32(reader.GetAttribute("Y"));
+            int width = Convert.ToInt32(reader.GetAttribute("Width"));
+            int height = Convert.ToInt32(reader.GetAttribute("Height"));
+            bool visible = (reader.GetAttribute("Visible") != null) ? (reader.GetAttribute("Visible") == bool.TrueString) : _defaultDisplayObject.Visible;
+            bool enabled = (reader.GetAttribute("Enabled") != null) ? (reader.GetAttribute("Enabled") == bool.TrueString) : _defaultDisplayObject.Enabled;
+
+            string text = reader.GetAttribute("Text");
+            Font font = GlideUtils.Convert.ToFont(reader.GetAttribute("Font"));
+            var fontColor = GlideUtils.Convert.ToColor(reader.GetAttribute("FontColor"));
+            var txt = new Text(font, text)
+            {
+                TextContent = text,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                ForeColor = fontColor,
+
+            };
+            ComboBox combo = new ComboBox(name,alpha,x,y,width,height);
+            //combo.ID = name;
+            //combo.Width = width;
+            //combo.Height = height;
+            //combo.Alpha = alpha;
+
+            // name, alpha, x, y, width, height);
+            combo.Visibility = visible ? Visibility.Visible : Visibility.Hidden;
+            combo.IsEnabled = enabled;
+            //dropdown.Child = txt;
+            //dropdown.Text = text;
+            combo.Font = font;
+            //dropdown.FontColor = fontColor;
+
+            if (!reader.IsEmptyElement)
+            {
+                combo.Options = new ArrayList();
+                while (reader.Read() && !(reader.NodeType == XmlNodeType.EndElement && reader.Name == "Dropdown"))
+                {
+                    if (reader.NodeType == XmlNodeType.Element && reader.Name == "Option")
+                    {
+                        // Apparently if you readstring before getattribute you'll lose position and it cannot find the attribute.
+                        string value = reader.GetAttribute("Value");
+                        object[] item = new object[2] { reader.ReadString(), value };
+                        combo.Options.Add(item);
+                    }
+                }
+            }
+            Canvas.SetLeft(combo, x);
+            Canvas.SetTop(combo, y);
+            return combo;
+        }
         /// <summary>
         /// Parses the DataGrid XML into a UI component.
         /// </summary>

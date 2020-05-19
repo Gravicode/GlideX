@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controls\CheckBox.cs" />
+    <Compile Include="Controls\ComboBox.cs" />
     <Compile Include="Controls\DataGrid\DataGrid.cs" />
     <Compile Include="Controls\DataGrid\DataGridColumn.cs" />
     <Compile Include="Controls\DataGrid\DataGridItem.cs" />

@@ -72,12 +72,12 @@ namespace TestGlideX
             app = new Program(lcd.display);
             OnScreenKeyboard.Font = Resources.GetFont(Resources.FontResources.NinaB);
             GlideX.SetupGlide(SCREEN_WIDTH, SCREEN_HEIGHT, 96, 0, lcd.display);
-            string GlideXML = Resources.GetString(Resources.StringResources.GridDemo);  
+            string GlideXML = Resources.GetString(Resources.StringResources.SampleForm);  
             
             //Resources.GetString(Resources.StringResources.Window)
             Window window = GlideLoader.LoadWindow(GlideXML);
             GlideX.MainWindow = window;
-            
+            /*
             var GvData = (DataGrid)GlideX.GetChildByName("GvData");
             var TxtSlider = (Text)GlideX.GetChildByName("txt1");
             var Slider1 = (Slider)GlideX.GetChildByName("slider1");
@@ -119,10 +119,18 @@ namespace TestGlideX
                 
             }, null, 1000, 1000);
             
-          
-            /*
+          */
+            
             var txt = (Text)GlideX.GetChildByName("TxtTest");
             var btn = (Button)GlideX.GetChildByName("btn");
+            var cmb = (ComboBox)GlideX.GetChildByName("cmb1");
+            Font font = Resources.GetFont(Resources.FontResources.NinaB);
+            cmb.Options = new ArrayList();
+            cmb.Options.Add(new object[2] { "Item 1", "Item 1" });
+            cmb.Options.Add(new object[2] { "Item 2", "Item 2" });
+            cmb.Options.Add(new object[2] { "Item 3", "Item 3" });
+            cmb.Options.Add(new object[2] { "Item 4", "Item 4" });
+            cmb.Invalidate();
             if (btn != null)
             {
                 btn.Click += (a,b) =>
@@ -133,7 +141,7 @@ namespace TestGlideX
                     window.Invalidate();
                     txt.Invalidate();
                 };
-            }*/
+            }
 
             //GlideTouch.Initialize();
             /*
