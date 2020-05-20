@@ -43,6 +43,9 @@
     <Compile Include="Controls\DataGrid\DataGridItemComparer.cs" />
     <Compile Include="Controls\Dropdown.cs" />
     <Compile Include="Controls\ListBoxItemHighlightable.cs" />
+    <Compile Include="Controls\List\IListItem.cs" />
+    <Compile Include="Controls\List\List.cs" />
+    <Compile Include="Controls\List\ListItem.cs" />
     <Compile Include="Controls\MessageBox.cs" />
     <Compile Include="Controls\ProgressBar.cs" />
     <Compile Include="Controls\RadioButton.cs" />

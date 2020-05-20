@@ -143,7 +143,9 @@ namespace GHIElectronics.TinyCLR.UI.Glide
         /// <param name="y1">Ending Y.</param>
         public void DrawLine(System.Drawing.Color color, int thickness, int x0, int y0, int x1, int y1)
         {
+            
             var pen = new Pen(new SolidBrush(color),thickness);
+           
             _bitmap.DrawLine(pen, x0, y0, x1, y1);
             //_bitmap.DrawLine(color.ToNativeColor(), thickness, x0, y0, x1, y1);
         }

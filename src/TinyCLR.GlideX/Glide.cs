@@ -11,6 +11,7 @@ using GHI.GlideX.Geom;
 using GHIElectronics.TinyCLR.Devices.Display;
 using GHIElectronics.TinyCLR.UI;
 using GHIElectronics.TinyCLR.UI.Controls;
+using GHIElectronics.TinyCLR.UI.Glide;
 using TinyCLR.GlideX.Properties;
 
 namespace GHI.GlideX
@@ -24,6 +25,8 @@ namespace GHI.GlideX
         internal static System.Drawing.Graphics screen;
         private static Window _mainWindow;
         public static IntPtr Hdc;
+        private static ComboBox _dropdown;
+        private static List _list;
         static GlideX()
         {
             
@@ -45,6 +48,27 @@ namespace GHI.GlideX
                 }
             }
             return null;
+        }
+
+        
+        public static bool RemoveChildByName(string ComponentID)
+        {
+            if (_mainWindow != null)
+            {
+                var mainCanvas = _mainWindow.Child as Canvas;
+                if (mainCanvas != null)
+                {
+                    foreach (UIElement component in mainCanvas.Children)
+                    {
+                        if (component.ID == ComponentID)
+                        {
+                            mainCanvas.Children.Remove(component);
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
         public static void SetupGlide(int width,int height, int bitsPerPixel, int orientationDeg, DisplayController displayController)
         {
@@ -163,6 +187,63 @@ namespace GHI.GlideX
                 }
             }
         }
+        /// <summary>
+        /// Opens a List component.
+        /// </summary>
+        /// <param name="sender">Object associated with the event.</param>
+        /// <param name="list">List component that needs to be opened.</param>
+        public static void OpenList(object sender, List list)
+        {
+            if (_list == null)
+            {
+                _dropdown = (ComboBox)sender;
+                _list = list;
+                _list.TapOptionEvent += new OnTapOption(list_TapOptionEvent);
 
+                //for (int i = 0; i < MainWindow.NumChildren; i++)
+                //    MainWindow[i].Interactive = false;
+
+                AddChild(list);
+                MainWindow.Invalidate();
+            }
+            else
+                throw new SystemException("You already have a List open.");
+        }
+
+        static void AddChild(UIElement child)
+        {
+            if (MainWindow != null && MainWindow.Child != null)
+            {
+                Canvas parent = MainWindow.Child as Canvas;
+                parent.Children.Add(child);
+            }
+        }
+        private static void list_TapOptionEvent(object sender, TapOptionEventArgs args)
+        {
+            _dropdown.Text = args.Label;
+            _dropdown.Value = args.Value;
+            _dropdown.TriggerValueChangedEvent(_dropdown);
+
+            CloseList();
+        }
+        /// <summary>
+        /// Closes a List component.
+        /// </summary>
+        public static void CloseList()
+        {
+            if (_list != null)
+            {
+                _list.TapOptionEvent -= new OnTapOption(list_TapOptionEvent);
+              
+                RemoveChildByName(_list.ID);
+                
+                _list = null;
+
+                //for (int i = 0; i < MainWindow.NumChildren; i++)
+                //    MainWindow[i].Interactive = true;
+
+                MainWindow.Invalidate();
+            }
+        }
     }
 }
