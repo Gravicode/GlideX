@@ -27,6 +27,7 @@ namespace GHI.GlideX
         public static IntPtr Hdc;
         private static ComboBox _dropdown;
         private static List _list;
+        static Hashtable listOfDisableControl;
         static GlideX()
         {
             
@@ -199,10 +200,26 @@ namespace GHI.GlideX
                 _dropdown = (ComboBox)sender;
                 _list = list;
                 _list.TapOptionEvent += new OnTapOption(list_TapOptionEvent);
-
+                if (listOfDisableControl == null) listOfDisableControl = new Hashtable();
+                listOfDisableControl.Clear();
                 //for (int i = 0; i < MainWindow.NumChildren; i++)
                 //    MainWindow[i].Interactive = false;
-
+                if (_mainWindow != null)
+                {
+                    var mainCanvas = _mainWindow.Child as Canvas;
+                    if (mainCanvas != null)
+                    {
+                        foreach (UIElement component in mainCanvas.Children)
+                        {
+                            if(component.Visibility == Visibility.Visible)
+                            {
+                                listOfDisableControl.Add(component.ID, component);
+                                component.Visibility = Visibility.Hidden;
+                            }
+                           
+                        }
+                    }
+                }
                 AddChild(list);
                 MainWindow.Invalidate();
             }
@@ -240,7 +257,24 @@ namespace GHI.GlideX
                 _list = null;
 
                 //for (int i = 0; i < MainWindow.NumChildren; i++)
-                //    MainWindow[i].Interactive = true;
+                //    MainWindow[i].Interactive = true; 
+                if (_mainWindow != null)
+                {
+                    var mainCanvas = _mainWindow.Child as Canvas;
+                    if (mainCanvas != null)
+                    {
+                        foreach (UIElement component in mainCanvas.Children)
+                        {
+                            if (listOfDisableControl.Contains(component.ID))
+                            {  
+                                component.Visibility = Visibility.Visible;
+                            }
+
+                        }
+                        listOfDisableControl.Clear();
+                    }
+               
+                }
 
                 MainWindow.Invalidate();
             }

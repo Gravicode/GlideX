@@ -123,21 +123,22 @@ namespace TestGlideX
             ArrayList options = new ArrayList();
             for (int i = 0; i < 5; i++)
             {
-                options.Add("Item " + i);
+                //options.Add("Item " + i);
+                options.Add( new object[] { "Item " + i, "Item " + i });
 
             }
-            /*
+
             var listMessage = new List(options, 300, GlideX.LCD.Width, GlideX.LCD.Height, GlideX.MainWindow);
             listMessage.CloseEvent += (object sender) =>
             {
                 GlideX.CloseList();
             };
-            */
+            
             var txt = (Text)GlideX.GetChildByName("TxtTest");
             var btn = (Button)GlideX.GetChildByName("btn");
-            var cmb = (Dropdown)GlideX.GetChildByName("cmb1");
-            cmb.Options = options;
-            /*
+            var cmb = (ComboBox)GlideX.GetChildByName("cmb1");
+            //cmb.Options = options;
+            
             cmb.TapEvent += (object sender) =>
             {
                 GlideX.OpenList(sender, listMessage);
@@ -149,7 +150,7 @@ namespace TestGlideX
                 Debug.WriteLine("selected:"+dropdown.Value.ToString());
                 //Debug.Print("Dropdown value: " + dropdown.Text + " : " + dropdown.Value.ToString());
             };
-            */
+            
             Font font = Resources.GetFont(Resources.FontResources.NinaB);
             //cmb.Options = new ArrayList();
             //cmb.Options.Add(new object[2] { "Item 1", "Item 1" });

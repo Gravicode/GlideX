@@ -31,6 +31,7 @@ namespace GHIElectronics.TinyCLR.UI.Controls
         private bool _pressed = false;
         private int _leftMargin = 10;
         private Glide.Geom.Rectangle _rect = new Glide.Geom.Rectangle();
+        //private bool isListOpen = false;
         public Glide.Geom.Rectangle Rect
         {
             get
@@ -171,12 +172,23 @@ namespace GHIElectronics.TinyCLR.UI.Controls
             var y = e.Touches[0].Y;
             if (Rect.Contains(x, y))
             {
-                if (_pressed)
+                //if (!isListOpen)
                 {
-                    _pressed = false;
-                    Invalidate();
-                    TriggerTapEvent(this);
-                    //e.StopPropagation();
+                    if (_pressed)
+                    {
+
+                        _pressed = false;
+                        Invalidate();
+                        TriggerTapEvent(this);
+                        //isListOpen = true;
+
+
+                        //e.StopPropagation();
+                    }
+                }
+                //else
+                {
+
                 }
             }
             else

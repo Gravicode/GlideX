@@ -109,8 +109,8 @@ namespace GHI.GlideX
                     return LoadCheckBox(reader);
 
                 case "Dropdown":
-                    return LoadDropdown(reader);
-
+                    //return LoadDropdown(reader);
+                    return LoadComboBox(reader);
                 case "DataGrid":
    
                     return LoadDataGrid(reader);

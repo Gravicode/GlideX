@@ -112,14 +112,16 @@ namespace GHIElectronics.TinyCLR.UI.Controls
                 width = LcdWidth;
             Width = width;
             Height = numItems * itemHeight;
-            X = 0;
-            Y = 0;
+            
           
 
             _rect.X = (LcdWidth - Width) / 2;
             _rect.Y = (LcdHeight - Height) / 2;
             _rect.Width = Width;
             _rect.Height = Height;
+
+            X = 0;
+            Y = 0;
 
             Canvas.SetLeft(this, _rect.X);
             Canvas.SetTop(this, _rect.Y);
@@ -175,6 +177,7 @@ namespace GHIElectronics.TinyCLR.UI.Controls
         /// </summary>
         public override void OnRender(DrawingContext dc)
         {
+           
             // Only render the child bitmap if children change
             if (NumChildren > 0) // && _renderedWithNumChildren < NumChildren
             {
@@ -190,7 +193,7 @@ namespace GHIElectronics.TinyCLR.UI.Controls
             }
             Media.Brush brush = new SolidColorBrush(Media.Colors.Black);
             var pen = new Media.Pen(Media.Colors.Black, 1);
-            dc.DrawRectangle(brush,pen, 0, 0, LCDWidth, LCDHeight);
+            //dc.DrawRectangle(brush,pen, 0, 0, LCDWidth, LCDHeight);
             dc.DrawImage(BitmapImage.FromGraphics(System.Drawing.Graphics.FromImage(_bitmap.GetBitmap())),X, Y, 0, _listY, Width, Height);
         }
 
@@ -230,6 +233,7 @@ namespace GHIElectronics.TinyCLR.UI.Controls
         /// <returns>Touch event arguments.</returns>
         protected override void OnTouchUp(TouchEventArgs e)
         {
+            var AY = Rect.Y;
             var x = e.Touches[0].X;
             var y = e.Touches[0].Y;
             if (!_pressed)
@@ -238,18 +242,22 @@ namespace GHIElectronics.TinyCLR.UI.Controls
                 _ignoredTouchMoves = 0;
                 return;
             }
-
-            if (!_moving)
+            if (Rect.Contains(x, y))
             {
-                int index = (int)System.Math.Floor(((_listY + y) - Y) / firstHeight);
-                if (index >= 0 && index < this.NumChildren) 
+
+
+                //if (!_moving)
                 {
-                    ListItem option = GetItem(index);
-                    TriggerTapOptionEvent(this, new TapOptionEventArgs(index, option.Label, option.Value));
+                    int index = (int)System.Math.Floor(((_listY + y) - AY) / firstHeight);
+                    if (index >= 0 && index < this.NumChildren)
+                    {
+                        ListItem option = GetItem(index);
+                        TriggerTapOptionEvent(this, new TapOptionEventArgs(index, option.Label, option.Value));
+                    }
                 }
             }
-            else
-                _moving = false;
+            //else
+            //    _moving = false;
 
             _pressed = false;
             _ignoredTouchMoves = 0;
@@ -275,6 +283,7 @@ namespace GHIElectronics.TinyCLR.UI.Controls
         /// <returns>Touch event arguments.</returns>
         protected override void OnTouchMove(TouchEventArgs e)
         {
+            /*
             var x = e.Touches[0].X;
             var y = e.Touches[0].Y;
             // The pressed state only triggers when touches occur within this UI element's boundaries.
@@ -298,6 +307,7 @@ namespace GHIElectronics.TinyCLR.UI.Controls
                 //Graphics.DrawImage(X, Y, _bitmap.GetBitmap(), 0, _listY, Width, Height);
                 //Glide.Flush(this);
             }
+            */
 
             //e.StopPropagation();
             //return e;
