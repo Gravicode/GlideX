@@ -120,8 +120,9 @@ namespace TestGlideX
             }, null, 1000, 1000);
             
           */
+            
             ArrayList options = new ArrayList();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 15; i++)
             {
                 //options.Add("Item " + i);
                 options.Add( new object[] { "Item " + i, "Item " + i });
@@ -134,6 +135,14 @@ namespace TestGlideX
                 GlideX.CloseList();
             };
             
+            //Font font = Resources.GetFont(Resources.FontResources.NinaB);
+            //var listBox = new ListBox();
+            //for (int i = 0; i < 15; i++)
+            //{
+            //    listBox.Items.Add(new Text(font, "Item "+i));
+
+            //}
+
             var txt = (Text)GlideX.GetChildByName("TxtTest");
             var btn = (Button)GlideX.GetChildByName("btn");
             var cmb = (ComboBox)GlideX.GetChildByName("cmb1");
@@ -151,7 +160,7 @@ namespace TestGlideX
                 //Debug.Print("Dropdown value: " + dropdown.Text + " : " + dropdown.Value.ToString());
             };
             
-            Font font = Resources.GetFont(Resources.FontResources.NinaB);
+           
             //cmb.Options = new ArrayList();
             //cmb.Options.Add(new object[2] { "Item 1", "Item 1" });
             //cmb.Options.Add(new object[2] { "Item 2", "Item 2" });

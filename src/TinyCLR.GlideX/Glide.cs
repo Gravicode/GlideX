@@ -27,6 +27,9 @@ namespace GHI.GlideX
         public static IntPtr Hdc;
         private static ComboBox _dropdown;
         private static List _list;
+        //private static ListBox _list;
+        //private static ScrollViewer _viewer;
+        //private static StackPanel _panel;
         static Hashtable listOfDisableControl;
         static GlideX()
         {
@@ -199,6 +202,7 @@ namespace GHI.GlideX
             {
                 _dropdown = (ComboBox)sender;
                 _list = list;
+                //_list.SelectionChanged += _list_SelectionChanged;
                 _list.TapOptionEvent += new OnTapOption(list_TapOptionEvent);
                 if (listOfDisableControl == null) listOfDisableControl = new Hashtable();
                 listOfDisableControl.Clear();
@@ -211,22 +215,59 @@ namespace GHI.GlideX
                     {
                         foreach (UIElement component in mainCanvas.Children)
                         {
-                            if(component.Visibility == Visibility.Visible)
+                            if (component.Visibility == Visibility.Visible)
                             {
                                 listOfDisableControl.Add(component.ID, component);
                                 component.Visibility = Visibility.Hidden;
                             }
-                           
+
                         }
                     }
                 }
-                AddChild(list);
+                /*
+                if (_viewer == null)
+                {
+                    //_panel = new StackPanel() { Orientation= Orientation.Vertical };
+                    _viewer = new ScrollViewer() { ID = "_mainListViewer", Child = _list };
+                }
+                else
+                {
+                    _viewer.Child = _list;
+                }*/
+                //_panel.Children.Clear();
+                //_panel.Children.Add(_list);
+                //set scroll position
+                //if (Width < 100)
+                //    Width = 100;
+                //else if (Width > LCDWidth)
+                //    Width = LCDWidth;
+                //var itemHeight = 32;
+                //int numItems = (int)(System.Math.Floor(LCDHeight / itemHeight)) - 1;
+                //var AvailableHeight = numItems * itemHeight;
+                //var Height = list.Items.Count * itemHeight;
+                //_list.Width = Width; //(LcdWidth - Width) / 2;
+                //_list.Height = AvailableHeight;//.Y = (LcdHeight - Height) / 2;
+                //var ax = (LCDWidth - Width) / 2;
+                //var ay = (LCDHeight - AvailableHeight) / 2;
+                //Canvas.SetLeft(_list, ax);
+                //Canvas.SetTop(_list, ay);
+                AddChild(_list);
+
                 MainWindow.Invalidate();
             }
             else
                 throw new SystemException("You already have a List open.");
         }
+        /*
+        private static void _list_SelectionChanged(object sender, SelectionChangedEventArgs args)
+        {
+            _dropdown.Text =_list.Items[args.SelectedIndex].ToString();
+            _dropdown.Value = _list.Items[args.SelectedIndex].ToString();
+            _dropdown.TriggerValueChangedEvent(_dropdown);
 
+            CloseList();
+        }
+        */
         static void AddChild(UIElement child)
         {
             if (MainWindow != null && MainWindow.Child != null)
@@ -250,12 +291,13 @@ namespace GHI.GlideX
         {
             if (_list != null)
             {
+                //_list.SelectionChanged -= _list_SelectionChanged;
                 _list.TapOptionEvent -= new OnTapOption(list_TapOptionEvent);
-              
+
                 RemoveChildByName(_list.ID);
                 
                 _list = null;
-
+                //_viewer = null;
                 //for (int i = 0; i < MainWindow.NumChildren; i++)
                 //    MainWindow[i].Interactive = true; 
                 if (_mainWindow != null)

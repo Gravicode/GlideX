@@ -61,13 +61,21 @@ namespace GHIElectronics.TinyCLR.UI.Controls
         public void Render(GlideGraphics bitmap)
         {
            
-            Width = Parent.Width;
+            Width = Parent.Rect.Width;
             //Bitmaps.DT_AlignmentCenter
             bitmap.DrawTextInRect(Label, X, Y + (Height - _font.Height) / 2, Width, _font.Height, new StringFormat() { Alignment = StringAlignment.Center }, Glide.Ext.Colors.Black, _font);
             bitmap.DrawLine(System.Drawing.Color.Gray, 1, 0, Y + Height, Width, Y + Height);
 
         }
+        public void Render(GlideGraphics bitmap, int Ay)
+        {
 
+            Width = Parent.Rect.Width;
+            //Bitmaps.DT_AlignmentCenter
+            bitmap.DrawTextInRect(Label, X, Ay + (Height - _font.Height) / 2, Width, _font.Height, new StringFormat() { Alignment = StringAlignment.Center }, Glide.Ext.Colors.Black, _font);
+            bitmap.DrawLine(System.Drawing.Color.Gray, 1, 0, Ay + Height, Width, Ay + Height);
+
+        }
         /// <summary>
         /// A string of text that describes this item.
         /// </summary>
