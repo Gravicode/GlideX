@@ -54,7 +54,20 @@ namespace GHI.GlideX
             return null;
         }
 
-        
+        public static bool AddChildToMainWindow(UIElement element)
+        {
+            if (_mainWindow != null)
+            {
+                var mainCanvas = _mainWindow.Child as Canvas;
+                if (mainCanvas != null)
+                {
+                    mainCanvas.Children.Add(element);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool RemoveChildByName(string ComponentID)
         {
             if (_mainWindow != null)

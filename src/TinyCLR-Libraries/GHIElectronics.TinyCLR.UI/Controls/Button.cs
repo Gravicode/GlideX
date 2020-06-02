@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using GHIElectronics.TinyCLR.UI.Input;
 using GHIElectronics.TinyCLR.UI.Media;
@@ -9,11 +10,21 @@ namespace GHIElectronics.TinyCLR.UI.Controls {
     {
         public ushort Alpha { get; set; } = 0xC8;
         public int RadiusBorder { get; set; } = 5;
-
+        bool IsTouchParentAssigned = false;
         public Button() {
             this.InitResource();
 
             this.Background = new SolidColorBrush(Colors.Gray);
+           
+        }
+
+        private void Parent_TouchUp(object sender, TouchEventArgs e)
+        {
+            if (this.isPressed)
+            {
+                this.isPressed = false;
+                this.Invalidate();
+            }
         }
 
         public event RoutedEventHandler Click;
@@ -49,7 +60,11 @@ namespace GHIElectronics.TinyCLR.UI.Controls {
             if (!this.IsEnabled) {
                 return;
             }
-
+            if (!IsTouchParentAssigned)
+            {
+                this.Parent.TouchUp += Parent_TouchUp;
+                IsTouchParentAssigned = true;
+            }
             var evt = new RoutedEvent("TouchDownEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler));
             var args = new RoutedEventArgs(evt, this);
 
@@ -63,6 +78,7 @@ namespace GHIElectronics.TinyCLR.UI.Controls {
                 this.Invalidate();
         }
 
+
         public override void OnRender(DrawingContext dc) {
             var alpha = (this.IsEnabled) ? this.Alpha : (ushort)(this.Alpha / 2);
 
@@ -75,6 +91,7 @@ namespace GHIElectronics.TinyCLR.UI.Controls {
         public void Dispose() {
             this.bitmapImageButtonDown.graphics.Dispose();
             this.bitmapImageButtonUp.graphics.Dispose();
+            this.Parent.TouchUp -= Parent_TouchUp;
         }
     }
 }

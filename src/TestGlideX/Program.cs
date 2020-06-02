@@ -159,8 +159,27 @@ namespace TestGlideX
                 Debug.WriteLine("selected:"+dropdown.Value.ToString());
                 //Debug.Print("Dropdown value: " + dropdown.Text + " : " + dropdown.Value.ToString());
             };
-            
-           
+
+            Font _font = Resources.GetFont(Resources.FontResources.NinaB);
+            Dropdown dropdown1 = new Dropdown();
+            dropdown1.ID = "dropdown1";
+            dropdown1.Width = 200;
+            dropdown1.Height = 32;
+            dropdown1.Alpha = 255;
+            dropdown1.Font = _font;
+            dropdown1.Options = new ArrayList();
+            for (int i = 0; i < 15; i++)
+            {
+                dropdown1.Options.Add("Item " + i);
+            }
+
+            GlideX.AddChildToMainWindow(dropdown1);
+            Canvas.SetLeft(dropdown1, 200);
+            Canvas.SetTop(dropdown1, 100);
+
+            //dropdown.Child = txt;
+            //dropdown.Text = text;
+
             //cmb.Options = new ArrayList();
             //cmb.Options.Add(new object[2] { "Item 1", "Item 1" });
             //cmb.Options.Add(new object[2] { "Item 2", "Item 2" });
