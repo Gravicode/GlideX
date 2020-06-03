@@ -6,8 +6,6 @@
 
 using System;
 using System.Collections;
-//using Microsoft.SPOT;
-//using Microsoft.SPOT.Presentation.Media;
 using System.Drawing;
 using GHIElectronics.TinyCLR.UI.Glide.Ext;
 

@@ -8,8 +8,7 @@ using GHIElectronics.TinyCLR.UI.Media;
 using GHIElectronics.TinyCLR.UI.Media.Imaging;
 
 namespace GHIElectronics.TinyCLR.UI.Controls {
-    public class Dropdown : ListBox, IDisposable
-    {
+    public class Dropdown : ListBox, IDisposable {
         private bool isOpened;
         private int originalHeight;
 

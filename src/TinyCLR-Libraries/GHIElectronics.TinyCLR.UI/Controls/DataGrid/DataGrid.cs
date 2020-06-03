@@ -7,8 +7,6 @@
 using System;
 using System.Collections;
 using System.Threading;
-//using Microsoft.SPOT;
-//using Microsoft.SPOT.Presentation.Media;
 using System.Drawing;
 using GHIElectronics.TinyCLR.UI.Media.Imaging;
 using GHIElectronics.TinyCLR.UI.Glide;

@@ -4,7 +4,7 @@ using System.IO;
 namespace System.Drawing {
     [Serializable]
     public abstract class Image : MarshalByRefObject, ICloneable, IDisposable {
-        public Graphics data;
+        internal Graphics data;
         private bool disposed;
 
         public int Width => this.data.Width;

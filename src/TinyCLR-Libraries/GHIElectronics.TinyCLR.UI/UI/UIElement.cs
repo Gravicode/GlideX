@@ -108,19 +108,13 @@ namespace GHIElectronics.TinyCLR.UI {
                         };
 
                         if (ge.Gesture == TouchGesture.Begin) {
-#pragma warning disable IDE0009 // Member access should be qualified.
                             OnTouchGestureStarted(ge);
-#pragma warning restore IDE0009 // Member access should be qualified.
                         }
                         else if (ge.Gesture == TouchGesture.End) {
-#pragma warning disable IDE0009 // Member access should be qualified.
                             OnTouchGestureEnded(ge);
-#pragma warning restore IDE0009 // Member access should be qualified.
                         }
                         else {
-#pragma warning disable IDE0009 // Member access should be qualified.
                             OnTouchGestureChanged(ge);
-#pragma warning restore IDE0009 // Member access should be qualified.
                         }
 
                         break;
@@ -209,28 +203,21 @@ namespace GHIElectronics.TinyCLR.UI {
         }
 
         public void SetMargin(int length) {
-#pragma warning disable IDE0009 // Member access should be qualified.
             VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
-#pragma warning disable IDE0009 // Member access should be qualified.
             SetMargin(length, length, length, length);
-#pragma warning restore IDE0009 // Member access should be qualified.
         }
 
         public void SetMargin(int left, int top, int right, int bottom) {
-#pragma warning disable IDE0009 // Member access should be qualified.
             VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
             this._marginLeft = left;
             this._marginTop = top;
             this._marginRight = right;
             this._marginBottom = bottom;
-#pragma warning disable IDE0009 // Member access should be qualified.
             InvalidateMeasure();
-#pragma warning restore IDE0009 // Member access should be qualified.
         }
+
         public string ID { get; set; }
         public int ActualWidth => this._renderWidth;
 
@@ -238,9 +225,7 @@ namespace GHIElectronics.TinyCLR.UI {
 
         public int Height {
             get {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 if (IsHeightSet(out var height)) {
-#pragma warning restore IDE0009 // Member access should be qualified.
                     return height;
                 }
                 else {
@@ -249,9 +234,7 @@ namespace GHIElectronics.TinyCLR.UI {
             }
 
             set {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
                 if (value < 0) throw new ArgumentException();
 
@@ -261,17 +244,13 @@ namespace GHIElectronics.TinyCLR.UI {
 
                 this._requestedSize._second = value;
                 this._requestedSize._status |= Pair.Flags_Second;
-#pragma warning disable IDE0009 // Member access should be qualified.
                 InvalidateMeasure();
-#pragma warning restore IDE0009 // Member access should be qualified.
             }
         }
 
         public int Width {
             get {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 if (IsWidthSet(out var width)) {
-#pragma warning restore IDE0009 // Member access should be qualified.
                     return width;
                 }
                 else {
@@ -280,9 +259,7 @@ namespace GHIElectronics.TinyCLR.UI {
             }
 
             set {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
                 if (value < 0) throw new ArgumentException();
 
@@ -292,9 +269,7 @@ namespace GHIElectronics.TinyCLR.UI {
 
                 this._requestedSize._first = value;
                 this._requestedSize._status |= Pair.Flags_First;
-#pragma warning disable IDE0009 // Member access should be qualified.
                 InvalidateMeasure();
-#pragma warning restore IDE0009 // Member access should be qualified.
             }
         }
 
@@ -332,9 +307,7 @@ namespace GHIElectronics.TinyCLR.UI {
 
         protected UIElementCollection LogicalChildren {
             get {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
                 if (this._logicalChildren == null) {
                     this._logicalChildren = new UIElementCollection(this);
@@ -491,9 +464,7 @@ namespace GHIElectronics.TinyCLR.UI {
         /// measure to content). This is soft constraint. Child can return bigger size to indicate that it wants bigger space and hope
         /// that parent can throw in scrolling...</param>
         public void Measure(int availableWidth, int availableHeight) {
-#pragma warning disable IDE0009 // Member access should be qualified.
             VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
 #if TINYCLR_DEBUG_LAYOUT
             Trace.Print(this.ToString() + ".Measure " + PrintSize(availableWidth, availableHeight));
@@ -574,9 +545,7 @@ namespace GHIElectronics.TinyCLR.UI {
 
             //we always want to be arranged, ensure arrange request
             //doing it before OnMeasure prevents unneeded requests from children in the queue
-#pragma warning disable IDE0009 // Member access should be qualified.
             InvalidateArrange();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
             // MeasureInProgress prevents OnChildDesiredSizeChange to cause the elements be put
             // into the queue.
@@ -604,9 +573,7 @@ namespace GHIElectronics.TinyCLR.UI {
                         frameworkAvailableHeight = System.Math.Min(this._requestedSize._second, frameworkAvailableHeight);
                     }
 
-#pragma warning disable IDE0009 // Member access should be qualified.
                     MeasureOverride(frameworkAvailableWidth, frameworkAvailableHeight, out desiredWidth, out desiredHeight);
-#pragma warning restore IDE0009 // Member access should be qualified.
 
                     if (haveRequestedWidth) {
                         desiredWidth = this._requestedSize._first;
@@ -618,9 +585,7 @@ namespace GHIElectronics.TinyCLR.UI {
                 }
                 else {
                     // No requested size specified
-#pragma warning disable IDE0009 // Member access should be qualified.
                     MeasureOverride(frameworkAvailableWidth, frameworkAvailableHeight, out desiredWidth, out desiredHeight);
-#pragma warning restore IDE0009 // Member access should be qualified.
                 }
 
                 // Restrict the desired size to the available size
@@ -682,9 +647,7 @@ namespace GHIElectronics.TinyCLR.UI {
         /// <param name="finalRectHeight">This is the height that parent or system wants this UIElement to assume.</param>
 
         public void Arrange(int finalRectX, int finalRectY, int finalRectWidth, int finalRectHeight) {
-#pragma warning disable IDE0009 // Member access should be qualified.
             VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
             //in case parent did not call Measure on a child, we call it now.
             //parent can skip calling Measure on a child if it does not care about child's size
@@ -692,9 +655,7 @@ namespace GHIElectronics.TinyCLR.UI {
             if ((this._flags & (Flags.InvalidMeasure | Flags.NeverMeasured)) != 0) {
                 try {
                     this._flags |= Flags.MeasureDuringArrange;
-#pragma warning disable IDE0009 // Member access should be qualified.
                     Measure(finalRectWidth, finalRectHeight);
-#pragma warning restore IDE0009 // Member access should be qualified.
                 }
                 finally {
                     this._flags &= ~Flags.MeasureDuringArrange;
@@ -733,9 +694,7 @@ namespace GHIElectronics.TinyCLR.UI {
                     this._finalX = finalRectX;
                     this._finalY = finalRectY;
 
-#pragma warning disable IDE0009 // Member access should be qualified.
                     if (IsRenderable()) {
-#pragma warning restore IDE0009 // Member access should be qualified.
                         PropagateFlags(this, Flags.IsSubtreeDirtyForRender);
                     }
                 }
@@ -775,9 +734,7 @@ namespace GHIElectronics.TinyCLR.UI {
             }
 
             try {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 ArrangeOverride(arrangeWidth, arrangeHeight);
-#pragma warning restore IDE0009 // Member access should be qualified.
             }
             finally {
                 this._flags &= ~Flags.ArrangeInProgress;
@@ -789,9 +746,7 @@ namespace GHIElectronics.TinyCLR.UI {
             var clientHeight = System.Math.Max(0, finalRectHeight - marginHeight);
 
             if (clientWidth != arrangeWidth || clientHeight != arrangeHeight) {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 ComputeAlignmentOffset(clientWidth, clientHeight, arrangeWidth, arrangeHeight, out offsetX, out offsetY);
-#pragma warning restore IDE0009 // Member access should be qualified.
 #if TINYCLR_DEBUG_LAYOUT
                 Trace.Print(this.ToString() + ": ComputeAlignmentOffset: " + PrintSize(clientWidth, clientHeight) + ", " + PrintSize(arrangeWidth, arrangeHeight) + " returned " + offsetX.ToString() + ", " + offsetY.ToString());
 #endif
@@ -824,9 +779,7 @@ namespace GHIElectronics.TinyCLR.UI {
 
             LayoutManager.CurrentLayoutManager.ArrangeQueue.Remove(this);
 
-#pragma warning disable IDE0009 // Member access should be qualified.
             if (IsRenderable()) {
-#pragma warning restore IDE0009 // Member access should be qualified.
                 PropagateFlags(this, Flags.IsSubtreeDirtyForRender);
             }
         }
@@ -927,9 +880,7 @@ namespace GHIElectronics.TinyCLR.UI {
         /// in a deferred manner) or only call it if you absolutely need updated sizes and positions after you do all changes.
         /// </remarks>
         public void UpdateLayout() {
-#pragma warning disable IDE0009 // Member access should be qualified.
             VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
             LayoutManager.CurrentLayoutManager.UpdateLayout();
         }
@@ -1083,9 +1034,7 @@ namespace GHIElectronics.TinyCLR.UI {
         /// The UIElement will be queued for an update layout that will occur asynchronously.
         /// </summary>
         public void InvalidateMeasure() {
-#pragma warning disable IDE0009 // Member access should be qualified.
             VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
             var flags = this._flags;
 
@@ -1105,9 +1054,7 @@ namespace GHIElectronics.TinyCLR.UI {
         /// else caused the measure state to be invalidated.
         /// </summary>
         public void InvalidateArrange() {
-#pragma warning disable IDE0009 // Member access should be qualified.
             VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
             var flags = this._flags;
 
@@ -1148,14 +1095,10 @@ namespace GHIElectronics.TinyCLR.UI {
             get => this._horizontalAlignment;
 
             set {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
                 this._horizontalAlignment = value;
-#pragma warning disable IDE0009 // Member access should be qualified.
                 InvalidateArrange();
-#pragma warning restore IDE0009 // Member access should be qualified.
             }
         }
 
@@ -1163,14 +1106,10 @@ namespace GHIElectronics.TinyCLR.UI {
             get => this._verticalAlignment;
 
             set {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
                 this._verticalAlignment = value;
-#pragma warning disable IDE0009 // Member access should be qualified.
                 InvalidateArrange();
-#pragma warning restore IDE0009 // Member access should be qualified.
             }
         }
 
@@ -1186,9 +1125,7 @@ namespace GHIElectronics.TinyCLR.UI {
         /// </remarks>
         protected virtual void OnChildDesiredSizeChanged(UIElement child) {
             if (this.IsMeasureValid) {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 InvalidateMeasure();
-#pragma warning restore IDE0009 // Member access should be qualified.
             }
         }
 
@@ -1202,9 +1139,7 @@ namespace GHIElectronics.TinyCLR.UI {
             get => this._visibility;
 
             set {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
                 if (this._visibility != value) {
                     var wasVisible = (this._flags & Flags.IsVisibleCache) != 0;
@@ -1229,9 +1164,7 @@ namespace GHIElectronics.TinyCLR.UI {
                     }
 
                     if (wasVisible != isVisible) {
-#pragma warning disable IDE0009 // Member access should be qualified.
                         OnIsVisibleChanged(wasVisible);
-#pragma warning restore IDE0009 // Member access should be qualified.
                     }
                 }
             }
@@ -1273,17 +1206,13 @@ namespace GHIElectronics.TinyCLR.UI {
 
         public event PropertyChangedEventHandler IsVisibleChanged {
             add {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
                 this._isVisibleChanged += value;
             }
 
             remove {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
                 this._isVisibleChanged -= value;
             }
@@ -1312,9 +1241,7 @@ namespace GHIElectronics.TinyCLR.UI {
             }
 
             set {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
                 var wasEnabled = this.IsEnabled;
 
@@ -1333,17 +1260,13 @@ namespace GHIElectronics.TinyCLR.UI {
 
         public event PropertyChangedEventHandler IsEnabledChanged {
             add {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
                 this._isEnabledChanged += value;
             }
 
             remove {
-#pragma warning disable IDE0009 // Member access should be qualified.
                 VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
                 this._isEnabledChanged -= value;
             }
@@ -1358,9 +1281,7 @@ namespace GHIElectronics.TinyCLR.UI {
                 Debug.Assert(this.Visibility == Visibility.Visible);
 
                 if (!dc.EmptyClipRect) {
-#pragma warning disable IDE0009 // Member access should be qualified.
                     OnRender(dc);
-#pragma warning restore IDE0009 // Member access should be qualified.
                     var children = this._logicalChildren;
                     if (children != null) {
                         var n = children.Count;
@@ -1397,9 +1318,7 @@ namespace GHIElectronics.TinyCLR.UI {
         }
 
         private void MarkDirtyRect(int x, int y, int w, int h) {
-#pragma warning disable IDE0009 // Member access should be qualified.
             PointToScreen(ref x, ref y);
-#pragma warning restore IDE0009 // Member access should be qualified.
             MediaContext.From(this.Dispatcher).AddDirtyArea(x, y, w, h);
 
             PropagateFlags(
@@ -1408,23 +1327,15 @@ namespace GHIElectronics.TinyCLR.UI {
         }
 
         public void InvalidateRect(int x, int y, int w, int h) {
-#pragma warning disable IDE0009 // Member access should be qualified.
             VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
-#pragma warning disable IDE0009 // Member access should be qualified.
             MarkDirtyRect(x, y, w, h);
-#pragma warning restore IDE0009 // Member access should be qualified.
         }
 
         public void Invalidate() {
-#pragma warning disable IDE0009 // Member access should be qualified.
             VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
-#pragma warning disable IDE0009 // Member access should be qualified.
             MarkDirtyRect(0, 0, this._renderWidth, this._renderHeight);
-#pragma warning restore IDE0009 // Member access should be qualified.
         }
 
         #region Eventing
@@ -1451,9 +1362,7 @@ namespace GHIElectronics.TinyCLR.UI {
         /// </param>
         public void RaiseEvent(RoutedEventArgs args) {
             // Verify Context Access
-#pragma warning disable IDE0009 // Member access should be qualified.
             VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
             if (args == null) {
                 throw new ArgumentNullException();
@@ -1498,17 +1407,13 @@ namespace GHIElectronics.TinyCLR.UI {
         /// </summary>
         // REFACTOR -- do we need this to be public?
         public void AddToEventRoute(EventRoute route, RoutedEventArgs args) {
-#pragma warning disable IDE0009 // Member access should be qualified.
             VerifyAccess();
-#pragma warning restore IDE0009 // Member access should be qualified.
 
             if (route == null || args == null) {
                 throw new ArgumentNullException();
             }
 
-#pragma warning disable IDE0009 // Member access should be qualified.
             AddToEventRouteImpl(route, args);
-#pragma warning restore IDE0009 // Member access should be qualified.
         }
 
         private void AddToEventRouteImpl(EventRoute route, RoutedEventArgs args) {
@@ -1650,20 +1555,12 @@ namespace GHIElectronics.TinyCLR.UI {
 
         //--//
 
-#pragma warning disable IDE1006 // Naming Styles
         internal UIElement _parent;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         internal UIElementCollection _logicalChildren;
-#pragma warning restore IDE1006 // Naming Styles
 
         //
-#pragma warning disable IDE1006 // Naming Styles
         internal Flags _flags;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         private Visibility _visibility;
-#pragma warning restore IDE1006 // Naming Styles
 
         // Layout
         //
@@ -1671,109 +1568,51 @@ namespace GHIElectronics.TinyCLR.UI {
             public const int Flags_First = 0x1;  // Can be (optionally) used with _status
             public const int Flags_Second = 0x2;
 
-#pragma warning disable IDE1006 // Naming Styles
             public int _first;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
             public int _second;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
             public int _status;
-#pragma warning restore IDE1006 // Naming Styles
         }
 
-#pragma warning disable IDE1006 // Naming Styles
         internal Pair _requestedSize;            // Used when Width/Height properties are set
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         internal Pair _anchorInfo;               // Used if the parent is a Canvas
-#pragma warning restore IDE1006 // Naming Styles
 
-#pragma warning disable IDE1006 // Naming Styles
         private int _marginLeft;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         private int _marginTop;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         private int _marginRight;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         private int _marginBottom;
-#pragma warning restore IDE1006 // Naming Styles
 
-#pragma warning disable IDE1006 // Naming Styles
         protected HorizontalAlignment _horizontalAlignment;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         protected VerticalAlignment _verticalAlignment;
-#pragma warning restore IDE1006 // Naming Styles
 
         // Cached layout information
         //
-#pragma warning disable IDE1006 // Naming Styles
         internal int _finalX;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         internal int _finalY;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         internal int _finalWidth;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         internal int _finalHeight;
-#pragma warning restore IDE1006 // Naming Styles
 
-#pragma warning disable IDE1006 // Naming Styles
         internal int _offsetX;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         internal int _offsetY;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         internal int _renderWidth;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         internal int _renderHeight;
-#pragma warning restore IDE1006 // Naming Styles
 
-#pragma warning disable IDE1006 // Naming Styles
         internal int _previousAvailableWidth;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         internal int _previousAvailableHeight;
-#pragma warning restore IDE1006 // Naming Styles
 
-#pragma warning disable IDE1006 // Naming Styles
         private int _desiredWidth;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         private int _desiredHeight;
-#pragma warning restore IDE1006 // Naming Styles
 
-#pragma warning disable IDE1006 // Naming Styles
         internal int _unclippedWidth;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         internal int _unclippedHeight;
-#pragma warning restore IDE1006 // Naming Styles
 
         // Routed Event Handling
 
-#pragma warning disable IDE1006 // Naming Styles
         private static Hashtable _classEventHandlersStore;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         private Hashtable _instanceEventHandlersStore;
-#pragma warning restore IDE1006 // Naming Styles
 
         // Regular Events
-#pragma warning disable IDE1006 // Naming Styles
         PropertyChangedEventHandler _isEnabledChanged;
-#pragma warning restore IDE1006 // Naming Styles
-#pragma warning disable IDE1006 // Naming Styles
         PropertyChangedEventHandler _isVisibleChanged;
-#pragma warning restore IDE1006 // Naming Styles
     }
 }
 

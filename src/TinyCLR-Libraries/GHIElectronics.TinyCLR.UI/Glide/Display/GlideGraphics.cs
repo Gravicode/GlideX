@@ -6,7 +6,6 @@
 
 using System;
 using System.Drawing;
-//using GHIElectronics.TinyCLR.UI;
 
 namespace GHIElectronics.TinyCLR.UI.Glide
 {

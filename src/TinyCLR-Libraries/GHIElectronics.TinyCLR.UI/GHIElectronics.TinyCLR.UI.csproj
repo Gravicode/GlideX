@@ -167,7 +167,20 @@
     <Compile Include="UI\WindowCollection.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GHIElectronics.TinyCLR.UI.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GHIElectronics.TinyCLR.Devices.Display\GHIElectronics.TinyCLR.Devices.Display.csproj">
+      <Project>{2E1DCA92-5601-4038-A1F0-01A604FB0B65}</Project>
+      <Name>GHIElectronics.TinyCLR.Devices.Display</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GHIElectronics.TinyCLR.Drawing\GHIElectronics.TinyCLR.Drawing.csproj">
+      <Project>{52A54E94-2FD8-4EEE-822C-C8C7F27AF423}</Project>
+      <Name>GHIElectronics.TinyCLR.Drawing</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
@@ -177,16 +190,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\droid_reg12.tinyfnt" />
-    <None Include="Resources\Keyboard_Lowercase.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Keyboard_Numbers.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Keyboard_Symbols.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Keyboard_Uppercase.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Button_Down.gif" />
@@ -225,20 +228,29 @@
     <None Include="Resources\RadioButton.gif" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GHIElectronics.TinyCLR.Devices.Display\GHIElectronics.TinyCLR.Devices.Display.csproj">
-      <Project>{2E1DCA92-5601-4038-A1F0-01A604FB0B65}</Project>
-      <Name>GHIElectronics.TinyCLR.Devices.Display</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GHIElectronics.TinyCLR.Drawing\GHIElectronics.TinyCLR.Drawing.csproj">
-      <Project>{52A54E94-2FD8-4EEE-822C-C8C7F27AF423}</Project>
-      <Name>GHIElectronics.TinyCLR.Drawing</Name>
-    </ProjectReference>
+    <None Include="Resources\DataGridIcon_Desc.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DataGridIcon_Asc.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DataGridIcon_Desc.gif" />
+    <None Include="Resources\Keyboard_Lowercase.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyboard_Numbers.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyboard_Symbols.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyboard_Uppercase.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\GHIElectronics.Tools.NuGetPacker.1.0.3\build\GHIElectronics.Tools.NuGetPacker.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GHIElectronics.Tools.NuGetPacker.1.0.3\build\GHIElectronics.Tools.NuGetPacker.targets'))" />
+  </Target>
+  <Import Project="..\packages\GHIElectronics.Tools.NuGetPacker.1.0.3\build\GHIElectronics.Tools.NuGetPacker.targets" Condition="Exists('..\packages\GHIElectronics.Tools.NuGetPacker.1.0.3\build\GHIElectronics.Tools.NuGetPacker.targets')" />
 </Project>

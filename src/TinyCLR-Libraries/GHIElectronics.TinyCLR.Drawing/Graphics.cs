@@ -24,7 +24,7 @@ namespace GHIElectronics.TinyCLR.Drawing {
 }
 
 namespace System.Drawing {
-    public interface IGraphics : IDisposable {
+    internal interface IGraphics : IDisposable {
         int Width { get; }
         int Height { get; }
 
@@ -43,9 +43,9 @@ namespace System.Drawing {
         void StretchImage(int xDst, int yDst, int widthDst, int heightDst, IGraphics image, int xSrc, int ySrc, int widthSrc, int heightSrc, ushort opacity);
     }
 
-    public class Graphics : MarshalByRefObject, IDisposable {
-        public int Width => this.surface.Width;
-        public int Height => this.surface.Height;
+    public sealed class Graphics : MarshalByRefObject, IDisposable {
+        internal int Width => this.surface.Width;
+        internal int Height => this.surface.Height;
 
         internal IGraphics surface;
         private bool disposed;
@@ -252,17 +252,7 @@ namespace System.Drawing {
                 throw new NotSupportedException();
             }
         }
-        /*
-        public void DrawString(string s, Font font, Brush brush, RectangleF layoutRectangle, uint dtFlag) {
-            if (brush is SolidBrush b) {
-                if (b.Color.A != 0xFF) throw new NotSupportedException("Alpha not supported.");
 
-                this.surface.DrawTextInRect(s, (int)layoutRectangle.X, (int)layoutRectangle.Y, (int)layoutRectangle.Width, (int)layoutRectangle.Height, dtFlag, b.Color, font);
-            }
-            else {
-                throw new NotSupportedException();
-            }
-        }*/
         public void DrawEllipse(Pen pen, int x, int y, int width, int height) {
             if (pen.Color.A != 0xFF) throw new NotSupportedException("Alpha not supported.");
 
@@ -316,7 +306,7 @@ namespace System.Drawing {
 
     namespace Internal {
         //The name and namespace of this must match the definition in c_TypeIndexLookup in TypeSystem.cpp and ResourceManager.GetObject
-        public class Bitmap : MarshalByRefObject, IDisposable, IGraphics {
+        internal class Bitmap : MarshalByRefObject, IDisposable, IGraphics {
 #pragma warning disable CS0169 // The field is never used
             IntPtr implPtr;
 #pragma warning restore CS0169 // The field is never used

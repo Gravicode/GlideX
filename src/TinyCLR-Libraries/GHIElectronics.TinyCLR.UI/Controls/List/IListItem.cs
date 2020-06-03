@@ -6,8 +6,6 @@
 
 using System;
 
-//using Microsoft.SPOT;
-
 
 namespace GHIElectronics.TinyCLR.UI.Controls
 {

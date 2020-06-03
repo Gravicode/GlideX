@@ -8,8 +8,7 @@ using GHIElectronics.TinyCLR.UI.Media;
 using GHIElectronics.TinyCLR.UI.Media.Imaging;
 
 namespace GHIElectronics.TinyCLR.UI.Controls {
-    public static class RadioButtonManager 
-    {
+    public static class RadioButtonManager {
         private static Hashtable groups = new Hashtable();
 
         // Adds a radio button to it's group.
@@ -66,8 +65,7 @@ namespace GHIElectronics.TinyCLR.UI.Controls {
         }
     }
 
-    public class RadioButton : ContentControl, IDisposable
-    {
+    public class RadioButton : ContentControl,IDisposable {
         public event RoutedEventHandler Click;
         private BitmapImage bitmapImageRadioButton;
         

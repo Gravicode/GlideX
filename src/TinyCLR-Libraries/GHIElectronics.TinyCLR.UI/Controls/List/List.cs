@@ -7,7 +7,6 @@
 using System;
 using System.Collections;
 using System.Threading;
-//using Microsoft.SPOT;
 using GHIElectronics.TinyCLR.UI.Glide.Geom;
 using System.Drawing;
 using GHIElectronics.TinyCLR.UI.Glide.Ext;

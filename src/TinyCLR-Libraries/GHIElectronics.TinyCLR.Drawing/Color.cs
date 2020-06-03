@@ -21,7 +21,7 @@ namespace System.Drawing {
         private const int ARGBRedShift = 16;
         private const int ARGBGreenShift = 8;
         private const int ARGBBlueShift = 0;
-        [Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+
         internal readonly long value;
 
         internal Color(long value) => this.value = value;
@@ -151,7 +151,7 @@ namespace System.Drawing {
 
         public override string ToString() {
             var sb = new StringBuilder(32);
-            sb.Append(this.GetType().Name);
+            sb.Append(GetType().Name);
             sb.Append(" [");
 
             sb.Append("A=");
