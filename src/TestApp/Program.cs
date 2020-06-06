@@ -1,5 +1,5 @@
 
-using GHI.GlideX;
+using GHIElectronics.TinyCLR.GlideX;
 using GHIElectronics.TinyCLR.Devices.Display;
 using GHIElectronics.TinyCLR.Pins;
 using GHIElectronics.TinyCLR.UI;
