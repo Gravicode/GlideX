@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A64BEBC4-1293-4769-A949-E8F28FB67623}</ProjectGuid>
+    <ProjectGuid>{ECE15E7C-6455-40F2-A47D-CF870797F958}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>TestApp</RootNamespace>
     <AssemblyName>TestApp</AssemblyName>
@@ -72,21 +72,29 @@
     <None Include="Resources\SplashScreen.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TinyCLR-Libraries\GHIElectronics.TinyCLR.Devices.Display\GHIElectronics.TinyCLR.Devices.Display.csproj">
+    <ProjectReference Include="..\NEW\TinyCLR-Libraries\GHIElectronics.TinyCLR.Devices.Display\GHIElectronics.TinyCLR.Devices.Display.csproj">
       <Project>{2E1DCA92-5601-4038-A1F0-01A604FB0B65}</Project>
       <Name>GHIElectronics.TinyCLR.Devices.Display</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TinyCLR-Libraries\GHIElectronics.TinyCLR.Drawing\GHIElectronics.TinyCLR.Drawing.csproj">
+    <ProjectReference Include="..\NEW\TinyCLR-Libraries\GHIElectronics.TinyCLR.Drawing\GHIElectronics.TinyCLR.Drawing.csproj">
       <Project>{52A54E94-2FD8-4EEE-822C-C8C7F27AF423}</Project>
       <Name>GHIElectronics.TinyCLR.Drawing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TinyCLR-Libraries\GHIElectronics.TinyCLR.GlideX\GHIElectronics.TinyCLR.GlideX.csproj">
-      <Project>{31374520-E8B7-46D4-889E-2154A9D30AA2}</Project>
-      <Name>GHIElectronics.TinyCLR.GlideX</Name>
+    <ProjectReference Include="..\NEW\TinyCLR-Libraries\GHIElectronics.TinyCLR.Glide\GHIElectronics.TinyCLR.Glide.csproj">
+      <Project>{DEC9FC62-AB15-430C-9D24-C5177DF8A454}</Project>
+      <Name>GHIElectronics.TinyCLR.Glide</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TinyCLR-Libraries\GHIElectronics.TinyCLR.UI\GHIElectronics.TinyCLR.UI.csproj">
+    <ProjectReference Include="..\NEW\TinyCLR-Libraries\GHIElectronics.TinyCLR.Pins\GHIElectronics.TinyCLR.Pins.csproj">
+      <Project>{2DCEEF58-5455-457C-B968-52D791605D07}</Project>
+      <Name>GHIElectronics.TinyCLR.Pins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NEW\TinyCLR-Libraries\GHIElectronics.TinyCLR.UI\GHIElectronics.TinyCLR.UI.csproj">
       <Project>{2BD3FB57-7D27-4DAF-A0DC-A23F5793E12A}</Project>
       <Name>GHIElectronics.TinyCLR.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NEW\TinyCLR-Libraries\mscorlib\mscorlib.csproj">
+      <Project>{AA751E21-9220-42CE-8180-516BB59E4555}</Project>
+      <Name>mscorlib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -101,9 +109,6 @@
     </Reference>
     <Reference Include="GHIElectronics.TinyCLR.Native, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GHIElectronics.TinyCLR.Native.2.0.0-preview6\lib\net452\GHIElectronics.TinyCLR.Native.dll</HintPath>
-    </Reference>
-    <Reference Include="GHIElectronics.TinyCLR.Pins, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GHIElectronics.TinyCLR.Pins.2.0.0-preview6\lib\net452\GHIElectronics.TinyCLR.Pins.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -122,21 +122,21 @@
     <value>..\Resources\car.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GridDemo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GridDemo.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null;Windows-1252</value>
+    <value>..\Resources\GridDemo.txt;System.String, mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;Windows-1252</value>
   </data>
   <data name="MainMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MainMenu.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null;Windows-1252</value>
+    <value>..\Resources\MainMenu.txt;System.String, mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;Windows-1252</value>
   </data>
   <data name="NinaB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NinaB.tinyfnt;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>..\Resources\NinaB.tinyfnt;System.Byte[], mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="SampleForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SampleForm.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null;Windows-1252</value>
+    <value>..\Resources\SampleForm.txt;System.String, mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;Windows-1252</value>
   </data>
   <data name="small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\small.tinyfnt;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>..\Resources\small.tinyfnt;System.Byte[], mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="SplashScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SplashScreen.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null;Windows-1252</value>
+    <value>..\Resources\SplashScreen.txt;System.String, mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;Windows-1252</value>
   </data>
 </root>
